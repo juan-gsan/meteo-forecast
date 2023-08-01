@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import cityReducer from "../redux/cities.slice";
+import weatherReducer from "../redux/weather.slice";
 
 export const store = configureStore({
   reducer: {
     cities: cityReducer,
+    weather: weatherReducer,
   },
 });
 

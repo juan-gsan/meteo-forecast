@@ -1,27 +1,30 @@
 import { useCallback, useMemo } from "react";
-import { MeteoRepo } from "../services/meteo.repo";
+import { CityRepo } from "../services/city.repo";
 import { AppDispatch, RootState } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAsyncCity } from "../redux/thunks";
 
 export function useCities() {
   const { city } = useSelector((state: RootState) => state.cities);
+  const isLoading = useSelector(
+    (state: RootState) => state.cities?.status === "loading"
+  );
   const dispatch: AppDispatch = useDispatch();
 
-  const meteoUrl = "https://api.open-meteo.com/v1/forecast";
+  const cityUrl = "https://geocoding-api.open-meteo.com/v1/search";
 
-  const lat = "52.52";
-  const long = "13.41";
-  const timezone = "Europe%2FBerlin";
+  const repo: CityRepo = useMemo(() => new CityRepo(cityUrl), []);
 
-  const repo: MeteoRepo = useMemo(() => new MeteoRepo(meteoUrl), []);
-
-  const handleLoadCity = useCallback(() => {
-    dispatch(loadAsyncCity({ repo, lat, long, timezone }));
-  }, [repo, lat, long, timezone, dispatch]);
+  const handleLoadCity = useCallback(
+    (cityName: string) => {
+      dispatch(loadAsyncCity({ repo, cityName }));
+    },
+    [repo, dispatch]
+  );
 
   return {
     city,
+    isLoading,
     handleLoadCity,
   };
 }

@@ -1,16 +1,9 @@
-import { Daily } from "../types/daily";
-import { DailyUnits } from "../types/daily.units";
-import { Hourly } from "../types/hourly";
-import { HourlyUnits } from "../types/hourly.units";
-
 export interface City {
+  id: number;
+  name: string;
   latitude: number;
   longitude: number;
-  elevation: number;
+  country_code: string;
+  country: string;
   timezone: string;
-  timezone_abbreviation: string;
-  hourly_units: HourlyUnits;
-  hourly: Hourly;
-  daily_units: DailyUnits;
-  daily: Daily;
 }

@@ -1,10 +1,10 @@
-import { Card } from "../Card/Card";
+import { AppRoutes } from "../App.routes/App.routes";
+import "./App.scss";
 
 export function App() {
   return (
     <>
-      <h1>MeteoForecast</h1>
-      <Card></Card>
+      <AppRoutes></AppRoutes>
     </>
   );
 }
