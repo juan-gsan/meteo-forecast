@@ -1,11 +1,10 @@
-import { useCities } from "./use.cities";
+import { useWeather } from "./use.weather";
 import { configureStore } from "@reduxjs/toolkit";
 import cityReducer from "../redux/cities.slice";
 import weatherReducer from "../redux/weather.slice";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
-import { City } from "../models/city";
 import userEvent from "@testing-library/user-event";
 
 describe("Given a useCities custom hook", () => {
@@ -20,17 +19,18 @@ describe("Given a useCities custom hook", () => {
   mockStore.dispatch = mockDispatch;
 
   function MockComponent() {
-    const { handleLoadCity } = useCities();
-    const mockCity = { name: "test" } as City;
+    const { handleLoadWeather } = useWeather();
 
     return (
       <>
-        <button onClick={() => handleLoadCity(mockCity.name)}></button>
+        <button
+          onClick={() => handleLoadWeather("test", "test", "test")}
+        ></button>
       </>
     );
   }
 
-  describe("When handleLoadCity is called", () => {
+  describe("When handleLoadWeather is called", () => {
     render(
       <MemoryRouter>
         <Provider store={mockStore}>
@@ -38,7 +38,7 @@ describe("Given a useCities custom hook", () => {
         </Provider>
       </MemoryRouter>
     );
-    test("Then it should dispatch loadAsyncCity", async () => {
+    test("Then it should dispatch loadAsyncWeather", async () => {
       const element = screen.getByRole("button");
       await userEvent.click(element);
       expect(mockDispatch).toHaveBeenCalled();
