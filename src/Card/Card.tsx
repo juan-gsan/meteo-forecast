@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useCities } from "../hooks/use.cities";
 import { useWeather } from "../hooks/use.weather";
-import "./Card.scss";
 
 export function Card() {
   const { city } = useCities();

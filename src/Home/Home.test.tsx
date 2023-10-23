@@ -25,20 +25,19 @@ describe("Given a Home component", () => {
       mockSetFormState,
     ],
   }));
+  beforeEach(() => {
+    render(
+      <Router>
+        <Provider store={mockStore}>
+          <Home></Home>
+        </Provider>
+      </Router>
+    );
+  });
 
   describe("When it is instantiated", () => {
-    beforeEach(() => {
-      render(
-        <Router>
-          <Provider store={mockStore}>
-            <Home></Home>
-          </Provider>
-        </Router>
-      );
-    });
-
     test("Then it should be in the document", () => {
-      const element = screen.getByRole("textbox");
+      const element = screen.getByRole("button");
       expect(element).toBeInTheDocument();
     });
   });
