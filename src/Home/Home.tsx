@@ -13,8 +13,7 @@ export function Home() {
     const element = event.target as HTMLInputElement;
     setFormState({
       ...formState,
-      [element.name]:
-        element.type === "checkbox" ? element.checked : element.value,
+      [element.name]: element.value,
     });
   };
 
@@ -27,7 +26,7 @@ export function Home() {
   return (
     <>
       <h1>MeteoForecast</h1>
-      <form onSubmit={handleLoad}>
+      <form onSubmit={handleLoad} aria-label="form">
         <input
           type="text"
           name="name"
