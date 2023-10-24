@@ -27,7 +27,7 @@ export function Home() {
   return (
     <>
       <h1>MeteoForecast</h1>
-      <form onSubmit={handleLoad}>
+      <form onSubmit={handleLoad} aria-label="form">
         <input
           type="text"
           name="name"

@@ -36,10 +36,6 @@ export function Card() {
             <p>hour: {weather.current_weather.time.slice(11)}</p>
             <p>day: {weather.current_weather.time.slice(0, 10)}</p>
           </div>
-          {/* <div>
-            <span>{weather.current_weather.winddirection}</span>
-            <span>{weather.current_weather.windspeed}</span>
-          </div> */}
           <div>
             <p>min: {weather.daily.temperature_2m_min[0]}</p>
             <p>max: {weather.daily.temperature_2m_max[0]}</p>
