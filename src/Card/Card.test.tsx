@@ -5,7 +5,7 @@ import cityReducer from "../redux/cities.slice";
 import weatherReducer from "../redux/weather.slice";
 import { Provider } from "react-redux";
 import { MemoryRouter as Router } from "react-router-dom";
-import { Card } from "./Card";
+import { WeatherCard } from "./Card";
 import { useWeather } from "../hooks/use.weather";
 
 jest.mock("../hooks/use.cities", () => ({
@@ -57,7 +57,7 @@ describe("Given a Card component", () => {
       render(
         <Router>
           <Provider store={mockStore}>
-            <Card></Card>
+            <WeatherCard></WeatherCard>
           </Provider>
         </Router>
       );
@@ -90,7 +90,7 @@ describe("Given a Card component", () => {
       render(
         <Router>
           <Provider store={mockStore}>
-            <Card></Card>
+            <WeatherCard></WeatherCard>
           </Provider>
         </Router>
       );
