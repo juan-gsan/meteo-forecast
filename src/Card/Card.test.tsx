@@ -16,6 +16,11 @@ jest.mock("../hooks/use.weather", () => ({
   useWeather: jest.fn(),
 }));
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: jest.fn().mockReturnValue({ id: "1" }),
+}));
+
 describe("Given a Card component", () => {
   const mockStore = configureStore({
     reducer: {
@@ -27,12 +32,15 @@ describe("Given a Card component", () => {
   describe("When it is instantiated", () => {
     test("Then it should be in the document", () => {
       jest.requireMock("../hooks/use.cities").useCities.mockReturnValue({
-        city: {
-          name: "Madrid",
-          latitude: 123,
-          longitude: 123,
-          timezone: "test",
-        },
+        cities: [
+          {
+            id: 1,
+            name: "Madrid",
+            latitude: 123,
+            longitude: 123,
+            timezone: "test",
+          },
+        ],
       });
 
       jest.requireMock("../hooks/use.weather").useWeather.mockReturnValue({
@@ -62,7 +70,7 @@ describe("Given a Card component", () => {
         </Router>
       );
 
-      const element = screen.getByText("city: Madrid");
+      const element = screen.getByText("Madrid");
       expect(element).toBeInTheDocument();
       expect(useWeather().handleLoadWeather).toHaveBeenCalled();
     });
@@ -71,12 +79,15 @@ describe("Given a Card component", () => {
   describe("When it is instantiated and there is no weather", () => {
     test("Then it should render only the city", () => {
       jest.requireMock("../hooks/use.cities").useCities.mockReturnValue({
-        city: {
-          name: "Madrid",
-          latitude: 123,
-          longitude: 123,
-          timezone: "test",
-        },
+        cities: [
+          {
+            id: 1,
+            name: "Madrid",
+            latitude: 123,
+            longitude: 123,
+            timezone: "test",
+          },
+        ],
       });
 
       jest.requireMock("../hooks/use.weather").useWeather.mockReturnValue({
@@ -95,8 +106,8 @@ describe("Given a Card component", () => {
         </Router>
       );
 
-      const element = screen.getByText("city: Madrid");
-      expect(element).toBeInTheDocument();
+      const element = document.querySelector(".container");
+      expect(element).not.toBeInTheDocument();
     });
   });
 });

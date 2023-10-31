@@ -20,12 +20,12 @@ describe("Given a useCities custom hook", () => {
   mockStore.dispatch = mockDispatch;
 
   function MockComponent() {
-    const { handleLoadCity } = useCities();
+    const { handleLoadCities } = useCities();
     const mockCity = { name: "test" } as City;
 
     return (
       <>
-        <button onClick={() => handleLoadCity(mockCity.name)}></button>
+        <button onClick={() => handleLoadCities(mockCity.name)}></button>
       </>
     );
   }

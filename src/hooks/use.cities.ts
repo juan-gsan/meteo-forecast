@@ -2,7 +2,7 @@ import { useCallback, useMemo } from "react";
 import { CityRepo } from "../services/city.repo";
 import { AppDispatch, RootState } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAsyncCity as loadAsyncCities } from "../redux/thunks";
+import { loadAsyncCities } from "../redux/thunks";
 
 export function useCities() {
   const { cities } = useSelector((state: RootState) => state.cities);

@@ -11,8 +11,8 @@ import { useCities } from "../hooks/use.cities";
 
 jest.mock("../hooks/use.cities", () => ({
   useCities: jest.fn().mockReturnValue({
-    handleLoadCity: jest.fn(),
-    city: {},
+    handleLoadCities: jest.fn(),
+    cities: [{ name: "New York", id: 1 }],
   }),
 }));
 
@@ -49,7 +49,8 @@ describe("Given a Home component", () => {
       const form = screen.getByRole("form");
       await userEvent.click(button);
       await fireEvent.submit(form);
-      expect(useCities().handleLoadCity).toHaveBeenCalled();
+      expect(useCities().handleLoadCities).toHaveBeenCalled();
+      expect(useCities().cities).toEqual([{ name: "New York", id: 1 }]);
     });
   });
 

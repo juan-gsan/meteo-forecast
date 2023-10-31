@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { City } from "../models/city";
-import { loadAsyncCity as loadAsyncCities } from "./thunks";
+import { loadAsyncCities } from "./thunks";
 
 export type CitiesState = {
   cities: City[];

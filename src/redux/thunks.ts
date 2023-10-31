@@ -4,7 +4,7 @@ import { City } from "../models/city";
 import { Weather } from "../models/weather";
 import { WeatherRepo } from "../services/weather.repo";
 
-export const loadAsyncCity = createAsyncThunk<
+export const loadAsyncCities = createAsyncThunk<
   City[],
   { repo: CityRepo; cityName: string }
 >("cities/load", async ({ repo, cityName }) => {
