@@ -24,3 +24,7 @@ h1 {
 .navigation {
   text-decoration: none;
 }
+
+ul {
+  list-style: none;
+}
