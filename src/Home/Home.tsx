@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from "react";
 import { useCities } from "../hooks/use.cities";
 import { City } from "../models/city";
 import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 export type FormState = Pick<City, "name">;
 
@@ -40,11 +41,12 @@ export function Home() {
         <></>
       ) : (
         <Link to={"/card"}>
-          <section>
-            <p>{city.name}</p>
-            <p>{city.country}</p>
-            <p>{city.country_code}</p>
-          </section>
+          <Card className="container" style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>{city.name}</Card.Title>
+              <Card.Subtitle>{city.country}</Card.Subtitle>
+            </Card.Body>
+          </Card>
         </Link>
       )}
     </>
