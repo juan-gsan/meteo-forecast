@@ -40,7 +40,7 @@ export function Home() {
       {!city ? (
         <></>
       ) : (
-        <Link to={"/card"}>
+        <Link className="navigation" to={"/card"}>
           <Card className="container" style={{ width: "18rem" }}>
             <Card.Body>
               <Card.Title>{city.name}</Card.Title>
