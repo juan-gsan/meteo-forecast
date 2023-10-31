@@ -17,7 +17,7 @@ describe("Given an App component", () => {
     },
     preloadedState: {
       cities: {
-        city: {} as City,
+        cities: [{} as City],
         status: "idle",
       },
       weather: {
