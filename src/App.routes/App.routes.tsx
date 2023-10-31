@@ -6,7 +6,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/card" element={<WeatherCard></WeatherCard>}></Route>
+      <Route path="/card/:id" element={<WeatherCard></WeatherCard>}></Route>
     </Routes>
   );
 }

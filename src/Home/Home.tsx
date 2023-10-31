@@ -1,13 +1,12 @@
 import { SyntheticEvent, useState } from "react";
 import { useCities } from "../hooks/use.cities";
 import { City } from "../models/city";
-import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
+import { CityCard } from "../City.card/City.card";
 
 export type FormState = Pick<City, "name">;
 
 export function Home() {
-  const { handleLoadCity, city } = useCities();
+  const { handleLoadCities, cities } = useCities();
   const [formState, setFormState] = useState<FormState>({ name: "" });
 
   const handleChange = (event: SyntheticEvent) => {
@@ -21,7 +20,7 @@ export function Home() {
   const handleLoad = async (event: SyntheticEvent) => {
     event.preventDefault();
     const cityName = formState.name;
-    handleLoadCity(cityName);
+    handleLoadCities(cityName);
   };
 
   return (
@@ -37,17 +36,10 @@ export function Home() {
         />
         <button type="submit">Search</button>
       </form>
-      {!city ? (
+      {!cities ? (
         <></>
       ) : (
-        <Link className="navigation" to={"/card"}>
-          <Card className="container" style={{ width: "18rem" }}>
-            <Card.Body>
-              <Card.Title>{city.name}</Card.Title>
-              <Card.Subtitle>{city.country}</Card.Subtitle>
-            </Card.Body>
-          </Card>
-        </Link>
+        cities.map((city) => <CityCard key={city.id} city={city} />)
       )}
     </>
   );

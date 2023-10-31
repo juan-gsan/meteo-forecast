@@ -6,10 +6,14 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "../assets/bootstrap.custom.css";
 import "../assets/index.css";
 import { CloseButton } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { City } from "../models/city";
 export function WeatherCard() {
-  const { city } = useCities();
+  const { cities } = useCities();
+  const { id } = useParams();
   const { handleLoadWeather, weather } = useWeather();
+
+  const city: City = cities.find((city) => city.id === Number(id)) as City;
 
   useEffect(() => {
     handleLoadWeather(
