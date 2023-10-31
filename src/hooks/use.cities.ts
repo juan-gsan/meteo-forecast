@@ -2,10 +2,10 @@ import { useCallback, useMemo } from "react";
 import { CityRepo } from "../services/city.repo";
 import { AppDispatch, RootState } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAsyncCity } from "../redux/thunks";
+import { loadAsyncCities } from "../redux/thunks";
 
 export function useCities() {
-  const { city } = useSelector((state: RootState) => state.cities);
+  const { cities } = useSelector((state: RootState) => state.cities);
   const isLoading = useSelector(
     (state: RootState) => state.cities?.status === "loading"
   );
@@ -15,16 +15,16 @@ export function useCities() {
 
   const repo: CityRepo = useMemo(() => new CityRepo(cityUrl), []);
 
-  const handleLoadCity = useCallback(
+  const handleLoadCities = useCallback(
     (cityName: string) => {
-      dispatch(loadAsyncCity({ repo, cityName }));
+      dispatch(loadAsyncCities({ repo, cityName }));
     },
     [repo, dispatch]
   );
 
   return {
-    city,
+    cities,
     isLoading,
-    handleLoadCity,
+    handleLoadCities,
   };
 }

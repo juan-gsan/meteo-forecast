@@ -15,7 +15,7 @@ describe("Given a cityRepo", () => {
         json: jest.fn().mockResolvedValue({ results: mockCityData }),
       });
 
-      const response = await mockCityRepo.getCity(expectedUrl);
+      const response = await mockCityRepo.getCities(expectedUrl);
 
       expect(global.fetch).toHaveBeenCalled();
       expect(response).toEqual({});

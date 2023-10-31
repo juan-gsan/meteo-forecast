@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { City } from "../models/city";
-import { loadAsyncCity } from "./thunks";
+import { loadAsyncCities } from "./thunks";
 
 export type CitiesState = {
-  city: City;
+  cities: City[];
   status: "idle" | "loading" | "failed";
 };
 
 const initialState: CitiesState = {
-  city: {} as City,
+  cities: [] as City[],
   status: "idle",
 };
 
@@ -18,14 +18,14 @@ const sliceCities = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loadAsyncCity.pending, (state) => {
+      .addCase(loadAsyncCities.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(loadAsyncCity.fulfilled, (state, { payload }) => {
+      .addCase(loadAsyncCities.fulfilled, (state, { payload }) => {
         state.status = "idle";
-        state.city = payload;
+        state.cities = payload;
       })
-      .addCase(loadAsyncCity.rejected, (state) => {
+      .addCase(loadAsyncCities.rejected, (state) => {
         state.status = "failed";
       });
   },

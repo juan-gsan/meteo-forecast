@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import cityReducer from "../redux/cities.slice";
 import weatherReducer from "../redux/weather.slice";
-import { loadAsyncCity, loadAsyncWeather } from "../redux/thunks";
+import { loadAsyncCities, loadAsyncWeather } from "../redux/thunks";
 import { CityRepo } from "../services/city.repo";
 import { WeatherRepo } from "../services/weather.repo";
 import { City } from "../models/city";
@@ -29,7 +29,7 @@ describe("Given a thunks file", () => {
     timezone: "TestTimezone",
   };
 
-  cityRepo.getCity = jest.fn().mockResolvedValue(cityData);
+  cityRepo.getCities = jest.fn().mockResolvedValue(cityData);
   weatherRepo.getWeatherByCity = jest.fn().mockResolvedValue(weatherData);
 
   describe("When loadAsyncCity is called", () => {
@@ -37,9 +37,9 @@ describe("Given a thunks file", () => {
       const cityName = "TestCityName";
 
       const store = mockStore;
-      await store.dispatch(loadAsyncCity({ repo: cityRepo, cityName }));
+      await store.dispatch(loadAsyncCities({ repo: cityRepo, cityName }));
 
-      await expect(cityRepo.getCity).toHaveBeenCalled();
+      await expect(cityRepo.getCities).toHaveBeenCalled();
     });
   });
 

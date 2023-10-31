@@ -4,11 +4,11 @@ import { City } from "../models/city";
 import { Weather } from "../models/weather";
 import { WeatherRepo } from "../services/weather.repo";
 
-export const loadAsyncCity = createAsyncThunk<
-  City,
+export const loadAsyncCities = createAsyncThunk<
+  City[],
   { repo: CityRepo; cityName: string }
 >("cities/load", async ({ repo, cityName }) => {
-  return await repo.getCity(cityName);
+  return await repo.getCities(cityName);
 });
 
 export const loadAsyncWeather = createAsyncThunk<

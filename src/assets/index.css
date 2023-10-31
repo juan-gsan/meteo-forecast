@@ -1,0 +1,26 @@
+body {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+form,
+h1 {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.container {
+  margin-top: 5rem;
+}
+
+.card-img-top {
+  width: 7.5rem;
+}
+
+.close-button {
+  margin-top: 1rem;
+}
+
+.navigation {
+  text-decoration: none;
+}
